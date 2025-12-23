@@ -115,5 +115,15 @@ This project should be:
 
 ---
 
+## Quick Start
+
+| I want to... | Command |
+|--------------|---------|
+| Start any task | `/start-task [description]` |
+| Check project status | `/gsd:progress` |
+| Start new multi-phase work | `/gsd:new-project` |
+
+---
+
 *Global workflow rules loaded from `~/.claude/`*
 *See `~/.claude/rules/checklists/static-sites.md` for static site patterns*
