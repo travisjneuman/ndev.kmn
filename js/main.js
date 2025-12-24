@@ -1,83 +1,167 @@
-$(document).ready(function () {
-  "use strict";
+/**
+ * Main JavaScript for Kersten M. Neuman Portfolio
+ *
+ * Features:
+ * - Responsive viewport height calculation
+ * - Mobile menu toggle
+ * - Contact form AJAX submission with validation
+ */
 
-  var window_width = $(window).width(),
-    window_height = window.innerHeight,
-    header_height = $(".default-header").height(),
-    header_height_static = $(".site-header.static").outerHeight(),
-    fitscreen = window_height - header_height;
+$(document).ready(function() {
+  'use strict';
 
-  $(".fullscreen").css("height", window_height);
-  $(".fitscreen").css("height", fitscreen);
+  // ======================
+  // Viewport Calculations
+  // ======================
 
-  // -------   Active Mobile Menu-----//
+  /**
+   * Sets fullscreen elements to window height
+   * Accounts for header when calculating fit screen areas
+   */
+  function setViewportHeights() {
+    var windowHeight = window.innerHeight;
+    var headerHeight = $('.default-header').height() || 0;
+    var fitscreen = windowHeight - headerHeight;
 
-  $(".menu-bar").on("click", function (e) {
+    $('.fullscreen').css('height', windowHeight);
+    $('.fitscreen').css('height', fitscreen);
+  }
+
+  // Set initial heights
+  setViewportHeights();
+
+  // Update on resize (debounced)
+  var resizeTimeout;
+  $(window).on('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(setViewportHeights, 150);
+  });
+
+  // ======================
+  // Mobile Menu Toggle
+  // ======================
+
+  $('.menu-bar').on('click', function(e) {
     e.preventDefault();
-    $("nav").toggleClass("hide");
-    $("span", this).toggleClass("lnr-menu lnr-cross");
-    $(".main-menu").addClass("mobile-menu");
+    $('nav').toggleClass('hide');
+    $('span', this).toggleClass('lnr-menu lnr-cross');
+    $('.main-menu').toggleClass('mobile-menu');
   });
 
-  $("select").niceSelect();
-  $(".img-pop-up").magnificPopup({
-    type: "image",
-    gallery: {
-      enabled: true,
-    },
-  });
+  // ======================
+  // Contact Form Handler
+  // ======================
 
-  $(".active-project-carousel").owlCarousel({
-    center: true,
-    items: 1,
-    loop: true,
-    margin: 100,
-    nav: true,
-    navText: [
-      '<i class="fa fa-caret-left""></i>',
-      '<i class="fa fa-caret-right""></i>',
-    ],
-  });
-  // $('.active-banner-slider').owlCarousel({
-  //     items:1,
-  //     loop:true,
-  //     margin: 100,
-  //     dots: true
-  // });
-  // Add smooth scrolling to Menu links
+  var $form = $('#myForm');
+  var $submitBtn = $form.find('button[type="submit"]');
+  var $alertMsg = $('.alert-msg');
+  var originalBtnText = $submitBtn.html();
 
-  $(document).ready(function () {
-    $("#mc_embed_signup").find("form").ajaxChimp();
-  });
-  // -------   Mail Send ajax
+  /**
+   * Validates email format
+   * @param {string} email - Email address to validate
+   * @returns {boolean} - True if valid
+   */
+  function isValidEmail(email) {
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
-  $(document).ready(function () {
-    var form = $("#myForm"); // contact form
-    var submit = $(".submit-btn"); // submit button
-    var alert = $(".alert-msg"); // alert div for show alert message
+  /**
+   * Shows form feedback message
+   * @param {string} message - Message to display
+   * @param {string} type - 'success' or 'error'
+   */
+  function showMessage(message, type) {
+    $alertMsg
+      .removeClass('success error')
+      .addClass(type)
+      .html(message)
+      .fadeIn();
+  }
 
-    // form submit event
-    form.on("submit", function (e) {
-      e.preventDefault(); // prevent default form submit
+  /**
+   * Resets submit button to original state
+   */
+  function resetButton() {
+    $submitBtn
+      .html(originalBtnText)
+      .prop('disabled', false);
+  }
 
-      $.ajax({
-        url: "mail.php", // form action url
-        type: "POST", // form submit method get/post
-        dataType: "html", // request type html/json/xml
-        data: form.serialize(), // serialize form data
-        beforeSend: function () {
-          alert.fadeOut();
-          submit.html("Sending...."); // change submit button text
-        },
-        success: function (data) {
-          alert.html(data).fadeIn(); // fade in response data
-          form.trigger("reset"); // reset form
-          submit.attr("style", "display: none !important"); // reset submit button text
-        },
-        error: function (e) {
-          console.log(e);
-        },
-      });
+  // Handle form submission
+  $form.on('submit', function(e) {
+    e.preventDefault();
+
+    // Get form values
+    var name = $('#fname').val().trim();
+    var email = $('#email').val().trim();
+    var message = $('#message').val().trim();
+
+    // Client-side validation
+    if (!name) {
+      showMessage('Please enter your name.', 'error');
+      $('#fname').focus();
+      return;
+    }
+
+    if (!email || !isValidEmail(email)) {
+      showMessage('Please enter a valid email address.', 'error');
+      $('#email').focus();
+      return;
+    }
+
+    if (!message) {
+      showMessage('Please enter a message.', 'error');
+      $('#message').focus();
+      return;
+    }
+
+    // Disable button and show loading state
+    $submitBtn
+      .html('<span class="mr-10">Sending...</span><span class="lnr lnr-arrow-right"></span>')
+      .prop('disabled', true);
+    $alertMsg.fadeOut();
+
+    // Submit form via AJAX
+    $.ajax({
+      url: 'mail.php',
+      type: 'POST',
+      dataType: 'html',
+      data: $form.serialize(),
+      timeout: 30000, // 30 second timeout
+      success: function(response) {
+        showMessage(response, 'success');
+        $form.trigger('reset');
+        resetButton();
+      },
+      error: function(xhr, status, error) {
+        var errorMessage = 'Sorry, there was a problem sending your message.';
+
+        if (status === 'timeout') {
+          errorMessage = 'Request timed out. Please try again.';
+        } else if (xhr.responseText) {
+          errorMessage = xhr.responseText;
+        }
+
+        showMessage(errorMessage, 'error');
+        resetButton();
+        console.error('Form submission error:', status, error);
+      }
     });
+  });
+
+  // ======================
+  // Smooth Scroll (for any anchor links)
+  // ======================
+
+  $('a[href^="#"]:not([href="#"])').on('click', function(e) {
+    var target = $(this.getAttribute('href'));
+    if (target.length) {
+      e.preventDefault();
+      $('html, body').animate({
+        scrollTop: target.offset().top - 80
+      }, 500);
+    }
   });
 });
