@@ -1,49 +1,44 @@
 # CLAUDE.md - Kersten Neuman Portfolio
 
-> Static portfolio website for Kersten Neuman (customer service professional)
+> Single-page portfolio website for Kersten M. Neuman (customer service professional)
 > **Global rules from `~/.claude/` apply automatically.**
 
 ---
 
 ## Project Identity
 
-**Type:** Static HTML/CSS website
-**Framework:** Bootstrap 4 + jQuery 2.2.4
-**Status:** Complete (Modernized December 2024)
-**Priority:** P3 (locked for archive)
-**Purpose:** Professional portfolio/CV site
+| Field | Value |
+|-------|-------|
+| **Type** | Static HTML/CSS/JS (no backend) |
+| **Framework** | Bootstrap 4 + jQuery 2.2.4 (minimal) |
+| **Status** | Complete |
+| **Priority** | P3 (maintenance mode) |
+| **Live URL** | https://kersten.neuman.dev |
+| **Purpose** | Professional portfolio/landing page |
 
 ---
 
-## Recent Modernization (December 2024)
+## Current State (December 2024)
 
-| Change | Before | After |
-|--------|--------|-------|
-| index.html | 423 lines (60% commented) | 173 lines (clean) |
-| main.css | 2,698 lines | 517 lines (81% reduction) |
-| main.js | 84 lines (3 nested ready blocks) | 167 lines (documented, single ready) |
-| mail.php | Insecure (demo@spondonit.com) | Secure (kerstennn@gmail.com) |
+This is a **single-page portfolio** with:
+- Full-viewport hero section (no scrolling needed)
+- Two contact buttons: LinkedIn + Email (mailto)
+- Integrated footer at bottom of viewport
+- No backend dependencies (pure static)
 
-### Security Improvements
-- Fixed email recipient (was sending to template demo email)
-- Added input validation and sanitization
-- Implemented honeypot bot protection
-- Fixed email header injection vulnerability
-- Added proper error handling
+### File Counts
+| File | Lines | Purpose |
+|------|-------|---------|
+| `index.html` | 95 | Single-page layout |
+| `css/main.css` | 367 | Custom styles with CSS variables |
+| `js/main.js` | 24 | Mobile viewport fix only |
 
-### Accessibility Improvements
-- Changed `lang="zxx"` to `lang="en"`
-- Added skip-to-content link
-- Added ARIA labels throughout
-- Added screen reader text for form labels
-- Added focus-visible states
-
-### Code Quality
-- Removed ~250 lines of commented template code
-- Removed unused CSS (carousel, gallery, testimonial sections)
-- Added CSS custom properties for theming
-- Documented JavaScript with JSDoc comments
-- Removed unused plugin dependencies
+### What Was Removed
+- Contact form section (was failing on Cloudflare)
+- mail.php (PHP not supported on static host)
+- Header with logo (cleaner single-page look)
+- 26 old favicon files (replaced with modern set)
+- ~2,300 lines of unused CSS
 
 ---
 
@@ -51,10 +46,12 @@
 
 | Category | Technology |
 |----------|------------|
-| Frontend | HTML5, CSS3, jQuery 2.2.4 |
-| Framework | Bootstrap 4 |
-| Backend | PHP (contact form only) |
-| Icons | Font Awesome, Linearicons |
+| Markup | HTML5 |
+| Styling | CSS3, CSS Custom Properties |
+| Layout | Flexbox, Bootstrap 4 grid |
+| JavaScript | jQuery 2.2.4 (minimal usage) |
+| Icons | Linearicons |
+| Hosting | Cloudflare Pages (static) |
 
 ---
 
@@ -62,21 +59,29 @@
 
 ```
 ndev.kmn/
-├── index.html           # Main homepage (clean, accessible)
-├── mail.php             # Secure contact form handler
-├── README.md            # Developer documentation
-├── CLAUDE.md            # This file
+├── index.html              # Single-page portfolio
+├── README.md               # Developer documentation
+├── CLAUDE.md               # This file
 ├── css/
-│   ├── main.css         # Custom styles (517 lines, CSS vars)
-│   ├── bootstrap.css    # Bootstrap 4 framework
+│   ├── main.css            # Custom styles (367 lines)
+│   ├── bootstrap.css       # Bootstrap 4
 │   ├── font-awesome.min.css
 │   └── linearicons.css
 ├── js/
-│   ├── main.js          # Custom scripts (documented)
-│   └── vendor/          # jQuery, Bootstrap JS
-├── img/                 # Images (including banner-bg.jpg)
-├── fonts/               # Icon fonts
-└── [favicon files]      # PWA icons for all platforms
+│   ├── main.js             # Minimal JS (24 lines)
+│   └── vendor/             # jQuery, Bootstrap, Popper
+├── img/
+│   ├── banner-bg.jpg       # Hero background
+│   ├── favicon/            # Modern favicon set
+│   │   ├── favicon.svg
+│   │   ├── favicon.ico
+│   │   ├── favicon-96x96.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── site.webmanifest
+│   │   └── web-app-manifest-*.png
+│   └── logo/
+│       └── logo.png        # Brand logo (not displayed)
+└── fonts/                  # Icon fonts
 ```
 
 ---
@@ -84,84 +89,173 @@ ndev.kmn/
 ## Development
 
 ```bash
-# Local server (no build step needed)
+# Start local server
 python -m http.server 8000
-
-# Or with Node
+# or
 npx serve .
 
-# Visit: http://localhost:8000
+# Visit http://localhost:8000
 ```
 
-**Note:** PHP required for mail.php contact form to function
+No build step. No dependencies to install. Pure static files.
 
 ---
 
-## Key Features
+## Deployment
 
-- Full-screen hero banner with CTA
-- Accessible contact form with validation
-- Responsive design (mobile, tablet, desktop)
-- PWA manifest support
-- WCAG 2.1 accessibility compliant
+The site is hosted on Cloudflare Pages. To deploy:
+1. Push to `origin/master`
+2. Cloudflare auto-deploys from GitHub
 
----
-
-## Key Files
-
-| File | Purpose |
-|------|---------|
-| `index.html` | Clean, accessible homepage |
-| `css/main.css` | Minimal, themed CSS |
-| `js/main.js` | Form handling, viewport calc |
-| `mail.php` | Secure email handler |
-| `README.md` | Setup documentation |
+No server configuration needed - it's all static files.
 
 ---
 
 ## CSS Theming
 
-Colors can be customized via CSS custom properties:
+Colors are defined via CSS custom properties in `main.css`:
 
 ```css
 :root {
   --color-primary: #8560f6;
+  --color-primary-rgb: 133, 96, 246;
   --color-text: #777777;
   --color-heading: #222222;
+  --color-white: #ffffff;
+  --font-family: "Poppins", sans-serif;
 }
+```
+
+To change the brand color, update `--color-primary` and `--color-primary-rgb`.
+
+---
+
+## Accessibility
+
+The site meets WCAG 2.1 AA standards:
+- Skip-to-content link
+- Semantic HTML structure
+- ARIA labels on interactive elements
+- Focus-visible states
+- Sufficient color contrast
+- Screen reader friendly
+
+---
+
+## Future Enhancement Ideas
+
+### Quick Wins (Low Effort)
+
+| Enhancement | Effort | Impact |
+|-------------|--------|--------|
+| Add OpenGraph meta tags | 15 min | Better social sharing |
+| Add structured data (JSON-LD) | 30 min | SEO improvement |
+| Remove jQuery entirely | 1 hour | Eliminate dependency |
+| Add subtle fade-in animation | 30 min | Polish |
+
+### Content Additions (Requires User Input)
+
+| Enhancement | Notes |
+|-------------|-------|
+| Professional headshot | Would add personal touch to hero |
+| Brief bio paragraph | 2-3 sentences about experience |
+| Downloadable resume | Update from 2018 version |
+| LinkedIn recommendations | Social proof |
+
+### Technical Improvements
+
+| Enhancement | Benefit |
+|-------------|---------|
+| Remove jQuery | Currently only used for 1 function (could be vanilla JS) |
+| Inline critical CSS | Faster first paint |
+| Add preload hints | Faster font/image loading |
+| Add analytics | Plausible or Fathom (privacy-respecting) |
+
+### Design Enhancements
+
+| Enhancement | Description |
+|-------------|-------------|
+| Icon buttons | Use LinkedIn/email icons instead of arrows |
+| Dark mode | Toggle based on system preference |
+| Subtle animations | CSS fade-in on page load |
+| Particle background | Subtle animated background (optional) |
+
+---
+
+## Session History
+
+### December 2024 - Major Modernization
+
+**Initial State:**
+- 423-line index.html with 60% commented code
+- 2,698-line CSS with 40% unused
+- Broken contact form (sending to wrong email)
+- Security vulnerabilities
+
+**Changes Made:**
+1. Fixed critical security issues in mail.php
+2. Removed ~250 lines of dead HTML
+3. Reduced CSS by 81% (2,698 → 517 lines)
+4. Added accessibility features (WCAG 2.1)
+5. Documented JavaScript with JSDoc
+
+**Second Pass:**
+1. Removed contact form entirely (was failing on Cloudflare)
+2. Converted to single-page layout (no scrolling)
+3. Added mailto email link next to LinkedIn
+4. Integrated footer into hero section
+5. Removed header/logo for cleaner look
+6. Updated to modern favicon set
+7. Deleted mail.php (no backend needed)
+8. Reduced CSS further (517 → 367 lines)
+9. Reduced JS (156 → 24 lines)
+
+**Final State:**
+- Pure static site (HTML/CSS/JS only)
+- Single viewport, no scrolling
+- LinkedIn + Email contact options
+- ~500 total lines of custom code
+
+---
+
+## Git History (Key Commits)
+
+```
+7b31126 chore: update favicons and add new logo
+28c8425 style: remove logo header for cleaner single-page look
+c90e572 refactor: convert to single-page layout with mailto link
+934c13b fix: address code review findings
+9ccbfff refactor: modernize portfolio with security fixes and 90% code reduction
 ```
 
 ---
 
-## Contact Form
+## Handoff Notes
 
-Sends to: `kerstennn@gmail.com`
+**For the next engineer:**
 
-Features:
-- Client-side validation (JS)
-- Server-side validation (PHP)
-- Honeypot spam protection
-- Email header injection prevention
-- AJAX submission with feedback
+1. **No backend** - This is pure static. Deploy anywhere (Netlify, Vercel, GitHub Pages, Cloudflare Pages).
 
----
+2. **jQuery is vestigial** - It's only used for one function (mobile viewport fix). Could easily be removed.
 
-## Future Enhancements (Optional)
+3. **Bootstrap is heavy** - Only using grid and some utilities. Could be replaced with ~50 lines of custom CSS if desired.
 
-If resuming work:
-- Update resume PDF (currently 2018)
-- Add testimonials section
-- Add project portfolio showcase
-- Consider migrating to modern JS (remove jQuery)
+4. **Logo exists but unused** - `img/logo/logo.png` is available if header is wanted back.
+
+5. **Fonts load from Google** - Poppins is loaded via Google Fonts. Could be self-hosted for privacy.
+
+6. **Contact goes to Gmail** - The mailto link uses `kerstennn@gmail.com`.
 
 ---
 
 ## Related Documentation
 
-- `README.md` - Developer setup guide
-- `~/.claude/rules/checklists/static-sites.md` - Static site patterns
+| Document | Purpose |
+|----------|---------|
+| `README.md` | Quick start for developers |
+| `~/.claude/rules/checklists/static-sites.md` | Static site patterns |
 
 ---
 
-*Modernized: December 2024*
-*Status: Complete and locked*
+*Last updated: December 2024*
+*Status: Complete - ready for handoff*

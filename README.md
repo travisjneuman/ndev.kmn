@@ -2,81 +2,84 @@
 
 Single-page portfolio website for Kersten M. Neuman, a Customer Service Professional based in Grand Rapids, Michigan.
 
+**Live:** https://kersten.neuman.dev
+
 ## Quick Start
 
 ```bash
-# Start local server (Python)
+# Start local server
 python -m http.server 8000
-
-# Or with Node.js
+# or
 npx serve .
 
 # Visit http://localhost:8000
 ```
 
+No build step. No dependencies. Pure static files.
+
 ## Project Structure
 
 ```
 ndev.kmn/
-├── index.html          # Single-page portfolio
+├── index.html              # Single-page portfolio (~95 lines)
 ├── css/
-│   ├── main.css        # Custom styles (~370 lines)
-│   ├── bootstrap.css   # Bootstrap 4 framework
-│   ├── font-awesome.min.css
-│   └── linearicons.css
+│   ├── main.css            # Custom styles (~370 lines)
+│   ├── bootstrap.css       # Bootstrap 4
+│   └── [icon CSS files]
 ├── js/
-│   ├── main.js         # Minimal JS (~25 lines)
-│   └── vendor/         # jQuery, Bootstrap, Popper
-├── img/                # Images
-├── fonts/              # Icon fonts
-└── [favicon files]     # App icons for various platforms
+│   ├── main.js             # Minimal JS (~25 lines)
+│   └── vendor/             # jQuery, Bootstrap, Popper
+├── img/
+│   ├── banner-bg.jpg       # Hero background
+│   ├── favicon/            # Favicon files
+│   └── logo/               # Logo (not currently displayed)
+└── fonts/                  # Icon fonts
 ```
 
 ## Features
 
-- **Single-page layout** - No scrolling required, everything visible at once
+- **Single-page layout** - Full viewport, no scrolling
 - **LinkedIn + Email buttons** - Direct contact options
-- **Accessibility compliant** - WCAG 2.1, skip links, focus states
-- **Mobile-first responsive** - Works on all screen sizes
-- **No backend required** - Pure static HTML/CSS/JS
+- **Accessibility** - WCAG 2.1 AA compliant
+- **Responsive** - Mobile, tablet, desktop
+- **No backend** - Pure static, deploy anywhere
 
-## Technology Stack
+## Tech Stack
 
 | Category | Technology |
 |----------|------------|
-| Framework | Bootstrap 4 |
-| JavaScript | jQuery 2.2.4 (minimal usage) |
-| Icons | Font Awesome, Linearicons |
-| Layout | Flexbox, CSS Custom Properties |
+| Layout | Bootstrap 4, Flexbox |
+| Styling | CSS Custom Properties |
+| JavaScript | jQuery 2.2.4 (minimal) |
+| Icons | Linearicons |
+| Fonts | Poppins (Google Fonts) |
 
 ## Customization
 
 ### Colors
 
-Edit CSS custom properties in `css/main.css`:
+Edit CSS variables in `css/main.css`:
 
 ```css
 :root {
   --color-primary: #8560f6;
   --color-primary-rgb: 133, 96, 246;
-  --color-text: #777777;
-  --color-heading: #222222;
 }
 ```
 
 ### Content
 
 Edit `index.html` to update:
-- Name and title in hero section
-- LinkedIn profile URL
+- Name and title
+- LinkedIn URL
 - Email address (mailto link)
-- Copyright text in footer
+- Copyright text
 
 ## Deployment
 
-1. Upload all files to any static hosting (Cloudflare Pages, Netlify, GitHub Pages, etc.)
-2. No server-side configuration needed
-3. Works from any CDN or static file server
+Push to `origin/master` → Cloudflare Pages auto-deploys.
+
+Or upload to any static host (Netlify, Vercel, GitHub Pages, etc.).
 
 ## Browser Support
 
@@ -85,9 +88,16 @@ Edit `index.html` to update:
 - Safari (latest)
 - Edge (latest)
 
+## Documentation
+
+See `CLAUDE.md` for:
+- Full project history
+- Future enhancement ideas
+- Technical handoff notes
+
 ## License
 
-All rights reserved. This is a personal portfolio website.
+All rights reserved. Personal portfolio website.
 
 ---
 
