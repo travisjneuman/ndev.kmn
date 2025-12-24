@@ -867,7 +867,7 @@ See `.archive/README.md` for contents.
 
 ## History
 
-### December 2024 Modernization
+### December 2025 Modernization
 
 Major cleanup and simplification:
 - Converted multi-section page to single-page layout
@@ -899,4 +899,4 @@ All rights reserved. Personal portfolio website.
 
 ---
 
-*Last updated: December 2024*
+*Last updated: December 2025*
