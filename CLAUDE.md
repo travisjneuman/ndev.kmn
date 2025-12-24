@@ -26,14 +26,15 @@ This is a **single-page portfolio** with:
 - Integrated footer at bottom of viewport
 - OpenGraph/Twitter Card social sharing
 - Modern favicon setup
+- WebP background with JPG fallback (4K, 637KB primary)
 - No backend dependencies (pure static)
 
 ### File Counts
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `index.html` | 108 | Single-page layout |
-| `css/main.css` | 337 | Custom styles with CSS variables |
+| `index.html` | 115 | Single-page layout + WebP detection |
+| `css/main.css` | 341 | Custom styles with CSS variables |
 | `js/main.js` | 24 | Mobile viewport fix only |
 
 ### What Was Removed/Archived
@@ -67,13 +68,13 @@ This is a **single-page portfolio** with:
 
 ```
 ndev.kmn/
-├── index.html              # Single-page portfolio (108 lines)
+├── index.html              # Single-page portfolio (115 lines)
 ├── README.md               # Comprehensive documentation
 ├── CLAUDE.md               # This file
 ├── .gitignore
 │
 ├── css/
-│   ├── main.css            # Custom styles (337 lines)
+│   ├── main.css            # Custom styles (341 lines)
 │   ├── bootstrap.css       # Bootstrap 4
 │   └── linearicons.css     # Icon font
 │
@@ -84,7 +85,8 @@ ndev.kmn/
 ├── fonts/                  # Linearicons font files
 │
 ├── img/
-│   ├── banner-bg.jpg       # Hero background
+│   ├── banner-bg.webp      # Hero background (637KB, primary)
+│   ├── banner-bg.jpg       # Hero background (946KB, fallback)
 │   ├── favicon/            # Modern favicon set
 │   │   ├── favicon.svg
 │   │   ├── favicon.ico
@@ -97,11 +99,10 @@ ndev.kmn/
 │   └── social/
 │       └── og-image.png    # OpenGraph image (1200x630)
 │
-└── .archive/               # Unused files for review/deletion
+└── .archive/               # Archived unused files
     ├── README.md           # Archive contents
-    ├── scss/               # Unused SCSS source
-    ├── font-awesome/       # Unused icon font
-    └── ...                 # ~100 other files
+    ├── banner-bg.png       # Original 12MB background
+    └── docs/KerstenNeuman2018.pdf  # Old resume
 ```
 
 ---
@@ -249,12 +250,21 @@ The site meets WCAG 2.1 AA standards:
 5. Created comprehensive README.md documentation
 6. Updated CLAUDE.md for handoff
 
+**Changes Made (Phase 4):**
+1. Optimized 12MB PNG background image
+2. Converted to 637KB WebP (95% reduction)
+3. Created 946KB JPG fallback for Safari <14
+4. Added WebP detection script in `<head>`
+5. Added `.webp` CSS class for progressive enhancement
+6. Archived original 12MB PNG
+
 **Final State:**
 - Pure static site (HTML/CSS/JS only)
 - Single viewport, no scrolling
 - LinkedIn + Email contact options
 - Full social sharing support
-- ~470 total lines of custom code
+- WebP image with JPG fallback
+- ~480 total lines of custom code
 
 ---
 
@@ -274,7 +284,9 @@ The site meets WCAG 2.1 AA standards:
 
 6. **Contact goes to Gmail** - The mailto link uses `kerstennn@gmail.com`.
 
-7. **Archive folder** - The `.archive/` folder contains ~100 unused template files. Can be deleted permanently or kept for reference.
+7. **Archive folder** - The `.archive/` folder contains the original 12MB PNG and an old 2018 resume. Can be deleted (~13MB savings) or kept for reference.
+
+8. **Background images** - Both WebP and JPG versions are required. WebP is primary (637KB), JPG is fallback for old Safari (946KB). Original 12MB PNG is in `.archive/`.
 
 ---
 

@@ -73,13 +73,13 @@ This is a professional portfolio website designed to:
 
 ```
 ndev.kmn/
-├── index.html              # Single-page portfolio (108 lines)
+├── index.html              # Single-page portfolio (115 lines)
 ├── README.md               # This documentation file
 ├── CLAUDE.md               # AI assistant instructions
 ├── .gitignore              # Git ignore rules
 │
 ├── css/                    # Stylesheets
-│   ├── main.css            # Custom styles (337 lines)
+│   ├── main.css            # Custom styles (341 lines)
 │   ├── bootstrap.css       # Bootstrap 4 framework
 │   └── linearicons.css     # Icon font styles
 │
@@ -96,7 +96,8 @@ ndev.kmn/
 │   └── Linearicons-Free.woff2
 │
 ├── img/                    # Images
-│   ├── banner-bg.jpg       # Hero background image
+│   ├── banner-bg.webp      # Hero background (637KB, primary)
+│   ├── banner-bg.jpg       # Hero background (946KB, fallback)
 │   ├── favicon/            # Favicon files
 │   │   ├── favicon.ico
 │   │   ├── favicon.svg
@@ -110,19 +111,19 @@ ndev.kmn/
 │   └── social/             # Social sharing images
 │       └── og-image.png    # OpenGraph image (1200x630)
 │
-└── .archive/               # Archived unused files (for review/deletion)
+└── .archive/               # Archived unused files
     ├── README.md           # Archive contents explanation
-    ├── scss/               # Unused SCSS source files
-    ├── font-awesome/       # Unused Font Awesome
-    └── [100+ other unused files]
+    ├── banner-bg.png       # Original 12MB background image
+    └── docs/
+        └── KerstenNeuman2018.pdf  # Old resume (could be updated)
 ```
 
 ### File Purposes
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `index.html` | 108 | Complete single-page website |
-| `css/main.css` | 337 | All custom styling |
+| `index.html` | 115 | Complete single-page website |
+| `css/main.css` | 341 | All custom styling |
 | `js/main.js` | 24 | Mobile viewport height fix only |
 | `css/bootstrap.css` | ~10,000 | Bootstrap 4 framework |
 | `css/linearicons.css` | ~500 | Icon font definitions |
@@ -458,6 +459,20 @@ $(document).ready(function() {
 3. CSS uses: `height: calc(var(--vh, 1vh) * 100)`
 4. Fallback: If `--vh` isn't set, uses standard `1vh`
 
+### WebP Detection Script
+
+In the `<head>`, a small script detects WebP support and adds a class for progressive enhancement:
+
+```html
+<script>
+  var img = new Image();
+  img.onload = function() { document.documentElement.classList.add('webp'); };
+  img.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+</script>
+```
+
+This runs before CSS loads, enabling the `.webp` class for the optimized background image.
+
 ### Additional JavaScript
 
 The copyright year is updated inline in the HTML:
@@ -466,6 +481,49 @@ The copyright year is updated inline in the HTML:
 <script>
   document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
+```
+
+---
+
+## Image Optimization
+
+### Background Image Strategy
+
+The hero background uses **WebP with JPG fallback** for optimal performance:
+
+| Format | Size | Usage |
+|--------|------|-------|
+| `banner-bg.webp` | 637 KB | Modern browsers (Chrome, Firefox, Edge, Safari 14+) |
+| `banner-bg.jpg` | 946 KB | Fallback for older browsers (Safari <14) |
+
+### How It Works
+
+1. **Detection:** WebP support is detected via JavaScript in the `<head>`
+2. **Class Added:** If WebP is supported, `webp` class is added to `<html>`
+3. **CSS Progressive Enhancement:**
+
+```css
+/* Default: JPG fallback */
+.banner-area {
+  background: url(../img/banner-bg.jpg) no-repeat center center/cover;
+}
+
+/* WebP for modern browsers */
+.webp .banner-area {
+  background-image: url(../img/banner-bg.webp);
+}
+```
+
+### Compression Details
+
+Original image was 12MB PNG (4K resolution). Converted using `sharp-cli`:
+
+```bash
+# WebP (primary) - 95% reduction
+npx sharp-cli -i original.png -o banner-bg.webp -f webp --quality 80
+
+# JPG (fallback) - 92% reduction
+npx sharp-cli -i original.png -o banner-bg.jpg -f jpeg --quality 75
 ```
 
 ---
@@ -669,28 +727,40 @@ Modern favicon configuration supporting all platforms:
 
 ### Current Optimizations
 
-1. **Minimal JavaScript** - Only 24 lines of custom JS
-2. **No unused CSS loaded** - Font Awesome removed
-3. **Preconnect to Google Fonts** - Reduces DNS lookup time
-4. **Single HTTP requests** - No dynamic loading
-5. **No images in critical path** - Background loads after content
+1. **Minimal JavaScript** - Only 24 lines of custom JS + WebP detection
+2. **WebP image format** - 637KB vs 946KB JPG fallback (95% smaller than original 12MB PNG)
+3. **No unused CSS loaded** - Font Awesome removed
+4. **Preconnect to Google Fonts** - Reduces DNS lookup time
+5. **Single HTTP requests** - No dynamic loading
+6. **No images in critical path** - Background loads after content
+7. **Progressive enhancement** - WebP detection enables optimal format automatically
 
 ### Resource Loading Order
 
-1. CSS files (render-blocking)
-2. Google Fonts (async with preconnect)
-3. JavaScript (at end of body)
-4. Background image (CSS, non-blocking)
+1. WebP detection script (inline, ~200 bytes)
+2. CSS files (render-blocking)
+3. Google Fonts (async with preconnect)
+4. JavaScript (at end of body)
+5. Background image (CSS, non-blocking, WebP or JPG based on support)
 
-### File Sizes (Approximate)
+### File Sizes
 
 | File | Size | Notes |
 |------|------|-------|
-| index.html | ~4 KB | Minified would be ~3 KB |
+| index.html | ~4 KB | Includes WebP detection |
 | main.css | ~10 KB | Could be minified |
 | bootstrap.css | ~150 KB | Unminified |
 | jquery | ~85 KB | Minified |
-| banner-bg.jpg | ~200 KB | Could be optimized |
+| banner-bg.webp | 637 KB | Primary (modern browsers) |
+| banner-bg.jpg | 946 KB | Fallback (Safari <14) |
+
+### Image Optimization Results
+
+| Source | Format | Size | Reduction |
+|--------|--------|------|-----------|
+| Original | PNG | 12 MB | - |
+| Optimized | WebP | 637 KB | **95%** |
+| Fallback | JPG | 946 KB | 92% |
 
 ### Lighthouse Targets
 
@@ -701,13 +771,13 @@ Modern favicon configuration supporting all platforms:
 | Best Practices | 100 |
 | SEO | 100 |
 
-### Potential Optimizations (Not Implemented)
+### Potential Further Optimizations
 
 - Minify CSS/JS
-- Optimize/compress banner-bg.jpg
 - Use Bootstrap 5 (removes jQuery dependency)
 - Inline critical CSS
-- Use system fonts instead of Google Fonts
+- Self-host Poppins font (privacy, speed)
+- Remove jQuery (convert 24-line script to vanilla JS)
 
 ---
 
@@ -730,11 +800,13 @@ Modern favicon configuration supporting all platforms:
 | Flexbox | All modern browsers |
 | CSS calc() | All modern browsers |
 | viewport units (vh) | All modern browsers |
+| WebP images | Chrome, Firefox, Edge, Safari 14+ |
 
 ### Known Issues
 
 - **iOS Safari:** 100vh includes browser chrome - fixed with JS
-- **IE11:** Not supported (CSS Custom Properties)
+- **Safari <14:** No WebP support - JPG fallback provided
+- **IE11:** Not supported (CSS Custom Properties, WebP)
 
 ---
 
@@ -818,10 +890,20 @@ Edit `index.html`:
 
 ### Changing the Background Image
 
-Replace `img/banner-bg.jpg` with your image. Recommended:
-- Minimum 1920x1080 pixels
+Replace both `img/banner-bg.webp` and `img/banner-bg.jpg`:
+
+```bash
+# Convert your image to WebP (primary)
+npx sharp-cli -i your-image.png -o img/banner-bg.webp -f webp --quality 80
+
+# Convert to JPG (fallback for old Safari)
+npx sharp-cli -i your-image.png -o img/banner-bg.jpg -f jpeg --quality 75
+```
+
+**Requirements:**
+- Minimum 1920x1080 pixels (4K acceptable)
 - Dark enough for white text overlay
-- Compressed for web
+- Both WebP and JPG versions needed for browser compatibility
 
 ### Adding More Buttons
 
@@ -856,12 +938,13 @@ Add another `<a>` inside `.banner-buttons`:
 
 ### Archive Folder
 
-The `.archive/` folder contains ~100 unused files from the original template. These can be:
-- Deleted permanently (saves space)
-- Kept for reference
-- Restored if features needed later
+The `.archive/` folder contains:
+- `banner-bg.png` - Original 12MB background (converted to WebP/JPG)
+- `docs/KerstenNeuman2018.pdf` - Old resume from 2018
 
-See `.archive/README.md` for contents.
+These can be deleted to save ~13MB, or kept for reference.
+
+See `.archive/README.md` for details.
 
 ---
 
@@ -869,7 +952,7 @@ See `.archive/README.md` for contents.
 
 ### December 2025 Modernization
 
-Major cleanup and simplification:
+**Phase 1-3: Major Cleanup**
 - Converted multi-section page to single-page layout
 - Removed broken PHP contact form
 - Added mailto email link
@@ -880,6 +963,12 @@ Major cleanup and simplification:
 - Removed Font Awesome (unused)
 - Cleaned CSS (removed unused styles)
 - Simplified JavaScript (removed form handling)
+
+**Phase 4: Image Optimization**
+- Converted 12MB PNG background to WebP + JPG
+- Added WebP detection script for progressive enhancement
+- Reduced primary image from 12MB to 637KB (95% reduction)
+- JPG fallback (946KB) for Safari <14 compatibility
 
 ### Original State
 
