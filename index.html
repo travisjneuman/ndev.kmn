@@ -48,24 +48,24 @@
 	<!-- Skip to main content for accessibility -->
 	<a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-	<!-- Start Header Area -->
-	<header class="default-header">
-		<div class="container">
-			<div class="header-wrap">
-				<div class="header-top d-flex justify-content-between align-items-center">
-					<div class="logo">
-						<a href="/" aria-label="Kersten M. Neuman - Home">
-							<img src="img/kmneuman_logo.png" alt="Kersten M. Neuman Logo">
-						</a>
+	<!-- Single Page Layout -->
+	<main id="main-content" class="single-page">
+		<!-- Header -->
+		<header class="default-header">
+			<div class="container">
+				<div class="header-wrap">
+					<div class="header-top d-flex justify-content-between align-items-center">
+						<div class="logo">
+							<a href="/" aria-label="Kersten M. Neuman - Home">
+								<img src="img/kmneuman_logo.png" alt="Kersten M. Neuman Logo">
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</header>
-	<!-- End Header Area -->
+		</header>
 
-	<!-- Start Banner Area -->
-	<main id="main-content">
+		<!-- Hero Section -->
 		<section class="banner-area relative" aria-label="Introduction">
 			<div class="overlay overlay-bg"></div>
 			<div class="container">
@@ -74,94 +74,37 @@
 						<div class="banner-content text-center">
 							<h1 class="text-white">Kersten M. Neuman</h1>
 							<p class="text-white">Customer Service Professional<br>Based out of Grand Rapids, Michigan.</p>
-							<a href="https://www.linkedin.com/in/kersten-neuman-990348bb/"
-							   class="primary-btn d-inline-flex align-items-center"
-							   aria-label="View Kersten's LinkedIn Profile">
-								<span class="mr-10">LinkedIn</span>
-								<span class="lnr lnr-arrow-right" aria-hidden="true"></span>
-							</a>
+							<div class="banner-buttons">
+								<a href="https://www.linkedin.com/in/kersten-neuman-990348bb/"
+								   class="primary-btn d-inline-flex align-items-center"
+								   aria-label="View Kersten's LinkedIn Profile">
+									<span class="mr-10">LinkedIn</span>
+									<span class="lnr lnr-arrow-right" aria-hidden="true"></span>
+								</a>
+								<a href="mailto:kerstennn@gmail.com"
+								   class="primary-btn d-inline-flex align-items-center"
+								   aria-label="Send email to Kersten">
+									<span class="mr-10">Email</span>
+									<span class="lnr lnr-arrow-right" aria-hidden="true"></span>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- End Banner Area -->
 
-		<!-- Start Contact Area -->
-		<section class="section-gap contact-area" aria-label="Contact Form">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 col-md-8">
-						<div class="section-title text-center">
-							<h2>Get in Touch</h2>
-							<p>Have a question or want to connect? Send me a message and I'll get back to you as soon as possible.</p>
-						</div>
+			<!-- Footer integrated into hero -->
+			<footer class="footer-area">
+				<div class="container">
+					<div class="footer-bottom d-flex justify-content-center align-items-center">
+						<p class="footer-text m-0">
+							&copy; <span id="current-year">2024</span> Kersten M. Neuman. All rights reserved.
+						</p>
 					</div>
 				</div>
-				<form id="myForm" action="mail.php" method="post" class="contact-form" novalidate>
-					<!-- Honeypot field for bot protection - hidden from users -->
-					<div style="position: absolute; left: -9999px;" aria-hidden="true">
-						<label for="website">Leave this field empty</label>
-						<input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-					</div>
-
-					<div class="row justify-content-center">
-						<div class="col-lg-5">
-							<label for="fname" class="sr-only">Your Name</label>
-							<input type="text"
-								   id="fname"
-								   name="fname"
-								   placeholder="Your name"
-								   class="common-input mt-20"
-								   required
-								   maxlength="100"
-								   aria-required="true">
-						</div>
-						<div class="col-lg-5">
-							<label for="email" class="sr-only">Your Email</label>
-							<input type="email"
-								   id="email"
-								   name="email"
-								   placeholder="Your email address"
-								   class="common-input mt-20"
-								   required
-								   aria-required="true">
-						</div>
-						<div class="col-lg-10">
-							<label for="message" class="sr-only">Your Message</label>
-							<textarea id="message"
-									  class="common-textarea mt-20"
-									  name="message"
-									  placeholder="Your message"
-									  required
-									  maxlength="5000"
-									  aria-required="true"></textarea>
-						</div>
-						<div class="col-lg-10 d-flex justify-content-end align-items-center flex-wrap">
-							<button type="submit" class="primary-btn white-bg d-inline-flex align-items-center mt-20">
-								<span class="mr-10">Send Message</span>
-								<span class="lnr lnr-arrow-right" aria-hidden="true"></span>
-							</button>
-							<div class="alert-msg ml-20 mt-20" role="status" aria-live="polite"></div>
-						</div>
-					</div>
-				</form>
-			</div>
+			</footer>
 		</section>
-		<!-- End Contact Area -->
 	</main>
-
-	<!-- Start Footer Area -->
-	<footer class="footer-area">
-		<div class="container">
-			<div class="footer-bottom d-flex justify-content-center align-items-center">
-				<p class="footer-text m-0">
-					&copy; <span id="current-year">2024</span> Kersten M. Neuman. All rights reserved.
-				</p>
-			</div>
-		</div>
-	</footer>
-	<!-- End Footer Area -->
 
 	<!-- JavaScript -->
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>

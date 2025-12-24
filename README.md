@@ -1,6 +1,6 @@
 # Kersten M. Neuman Portfolio
 
-Professional portfolio website for Kersten M. Neuman, a Customer Service Professional based in Grand Rapids, Michigan.
+Single-page portfolio website for Kersten M. Neuman, a Customer Service Professional based in Grand Rapids, Michigan.
 
 ## Quick Start
 
@@ -18,16 +18,15 @@ npx serve .
 
 ```
 ndev.kmn/
-├── index.html          # Main homepage
-├── mail.php            # Contact form handler
+├── index.html          # Single-page portfolio
 ├── css/
-│   ├── main.css        # Custom styles
+│   ├── main.css        # Custom styles (~370 lines)
 │   ├── bootstrap.css   # Bootstrap 4 framework
 │   ├── font-awesome.min.css
 │   └── linearicons.css
 ├── js/
-│   ├── main.js         # Custom JavaScript
-│   └── vendor/         # Third-party libraries
+│   ├── main.js         # Minimal JS (~25 lines)
+│   └── vendor/         # jQuery, Bootstrap, Popper
 ├── img/                # Images
 ├── fonts/              # Icon fonts
 └── [favicon files]     # App icons for various platforms
@@ -35,35 +34,20 @@ ndev.kmn/
 
 ## Features
 
-- Responsive hero section with professional introduction
-- Secure contact form with validation
-- Accessibility compliant (WCAG 2.1)
-- Mobile-first responsive design
-- PWA manifest for mobile installation
+- **Single-page layout** - No scrolling required, everything visible at once
+- **LinkedIn + Email buttons** - Direct contact options
+- **Accessibility compliant** - WCAG 2.1, skip links, focus states
+- **Mobile-first responsive** - Works on all screen sizes
+- **No backend required** - Pure static HTML/CSS/JS
 
 ## Technology Stack
 
 | Category | Technology |
 |----------|------------|
 | Framework | Bootstrap 4 |
-| JavaScript | jQuery 2.2.4 |
-| Backend | PHP (mail only) |
+| JavaScript | jQuery 2.2.4 (minimal usage) |
 | Icons | Font Awesome, Linearicons |
-
-## Contact Form Setup
-
-The contact form requires PHP mail functionality. Configure your server's mail settings:
-
-1. Ensure PHP `mail()` function is enabled
-2. Update `mail.php` with the correct recipient email
-3. Add your domain to the allowed referers list in `mail.php`
-
-### Security Features
-
-- Input validation and sanitization
-- Email header injection prevention
-- Honeypot field for bot detection
-- Referer validation
+| Layout | Flexbox, CSS Custom Properties |
 
 ## Customization
 
@@ -74,6 +58,7 @@ Edit CSS custom properties in `css/main.css`:
 ```css
 :root {
   --color-primary: #8560f6;
+  --color-primary-rgb: 133, 96, 246;
   --color-text: #777777;
   --color-heading: #222222;
 }
@@ -84,14 +69,14 @@ Edit CSS custom properties in `css/main.css`:
 Edit `index.html` to update:
 - Name and title in hero section
 - LinkedIn profile URL
-- Contact form section text
+- Email address (mailto link)
+- Copyright text in footer
 
 ## Deployment
 
-1. Upload all files to your web server
-2. Ensure PHP is enabled for `mail.php`
-3. Configure SMTP if required by your host
-4. Update domain in `mail.php` allowed_domains array
+1. Upload all files to any static hosting (Cloudflare Pages, Netlify, GitHub Pages, etc.)
+2. No server-side configuration needed
+3. Works from any CDN or static file server
 
 ## Browser Support
 
