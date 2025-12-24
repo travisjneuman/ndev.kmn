@@ -24,20 +24,27 @@ This is a **single-page portfolio** with:
 - Full-viewport hero section (no scrolling needed)
 - Two contact buttons: LinkedIn + Email (mailto)
 - Integrated footer at bottom of viewport
+- OpenGraph/Twitter Card social sharing
+- Modern favicon setup
 - No backend dependencies (pure static)
 
 ### File Counts
+
 | File | Lines | Purpose |
 |------|-------|---------|
-| `index.html` | 95 | Single-page layout |
-| `css/main.css` | 367 | Custom styles with CSS variables |
+| `index.html` | 108 | Single-page layout |
+| `css/main.css` | 337 | Custom styles with CSS variables |
 | `js/main.js` | 24 | Mobile viewport fix only |
 
-### What Was Removed
+### What Was Removed/Archived
+
 - Contact form section (was failing on Cloudflare)
 - mail.php (PHP not supported on static host)
 - Header with logo (cleaner single-page look)
 - 26 old favicon files (replaced with modern set)
+- Font Awesome CSS (unused, only Linearicons used)
+- SCSS source files (archived)
+- ~100 unused template files (moved to `.archive/`)
 - ~2,300 lines of unused CSS
 
 ---
@@ -46,11 +53,12 @@ This is a **single-page portfolio** with:
 
 | Category | Technology |
 |----------|------------|
-| Markup | HTML5 |
+| Markup | HTML5, Semantic elements |
 | Styling | CSS3, CSS Custom Properties |
 | Layout | Flexbox, Bootstrap 4 grid |
 | JavaScript | jQuery 2.2.4 (minimal usage) |
-| Icons | Linearicons |
+| Icons | Linearicons Free |
+| Fonts | Poppins (Google Fonts) |
 | Hosting | Cloudflare Pages (static) |
 
 ---
@@ -59,17 +67,22 @@ This is a **single-page portfolio** with:
 
 ```
 ndev.kmn/
-├── index.html              # Single-page portfolio
-├── README.md               # Developer documentation
+├── index.html              # Single-page portfolio (108 lines)
+├── README.md               # Comprehensive documentation
 ├── CLAUDE.md               # This file
+├── .gitignore
+│
 ├── css/
-│   ├── main.css            # Custom styles (367 lines)
+│   ├── main.css            # Custom styles (337 lines)
 │   ├── bootstrap.css       # Bootstrap 4
-│   ├── font-awesome.min.css
-│   └── linearicons.css
+│   └── linearicons.css     # Icon font
+│
 ├── js/
 │   ├── main.js             # Minimal JS (24 lines)
 │   └── vendor/             # jQuery, Bootstrap, Popper
+│
+├── fonts/                  # Linearicons font files
+│
 ├── img/
 │   ├── banner-bg.jpg       # Hero background
 │   ├── favicon/            # Modern favicon set
@@ -79,9 +92,16 @@ ndev.kmn/
 │   │   ├── apple-touch-icon.png
 │   │   ├── site.webmanifest
 │   │   └── web-app-manifest-*.png
-│   └── logo/
-│       └── logo.png        # Brand logo (not displayed)
-└── fonts/                  # Icon fonts
+│   ├── logo/
+│   │   └── logo.png        # Brand logo (not displayed)
+│   └── social/
+│       └── og-image.png    # OpenGraph image (1200x630)
+│
+└── .archive/               # Unused files for review/deletion
+    ├── README.md           # Archive contents
+    ├── scss/               # Unused SCSS source
+    ├── font-awesome/       # Unused icon font
+    └── ...                 # ~100 other files
 ```
 
 ---
@@ -127,6 +147,7 @@ Colors are defined via CSS custom properties in `main.css`:
 ```
 
 To change the brand color, update `--color-primary` and `--color-primary-rgb`.
+Also update `<meta name="theme-color">` in index.html.
 
 ---
 
@@ -134,11 +155,24 @@ To change the brand color, update `--color-primary` and `--color-primary-rgb`.
 
 The site meets WCAG 2.1 AA standards:
 - Skip-to-content link
-- Semantic HTML structure
+- Semantic HTML structure (`<main>`, `<section>`, `<footer>`)
 - ARIA labels on interactive elements
 - Focus-visible states
 - Sufficient color contrast
 - Screen reader friendly
+- Print styles
+
+---
+
+## SEO & Social Sharing
+
+**Implemented:**
+- Meta description and keywords
+- OpenGraph tags (Facebook, LinkedIn)
+- Twitter Card tags
+- og-image.png for social previews
+- Modern favicon set with site.webmanifest
+- Theme color for mobile browsers
 
 ---
 
@@ -148,10 +182,10 @@ The site meets WCAG 2.1 AA standards:
 
 | Enhancement | Effort | Impact |
 |-------------|--------|--------|
-| Add OpenGraph meta tags | 15 min | Better social sharing |
 | Add structured data (JSON-LD) | 30 min | SEO improvement |
 | Remove jQuery entirely | 1 hour | Eliminate dependency |
 | Add subtle fade-in animation | 30 min | Polish |
+| Self-host Poppins font | 30 min | Privacy, speed |
 
 ### Content Additions (Requires User Input)
 
@@ -178,7 +212,6 @@ The site meets WCAG 2.1 AA standards:
 | Icon buttons | Use LinkedIn/email icons instead of arrows |
 | Dark mode | Toggle based on system preference |
 | Subtle animations | CSS fade-in on page load |
-| Particle background | Subtle animated background (optional) |
 
 ---
 
@@ -192,14 +225,14 @@ The site meets WCAG 2.1 AA standards:
 - Broken contact form (sending to wrong email)
 - Security vulnerabilities
 
-**Changes Made:**
+**Changes Made (Phase 1):**
 1. Fixed critical security issues in mail.php
 2. Removed ~250 lines of dead HTML
-3. Reduced CSS by 81% (2,698 → 517 lines)
+3. Reduced CSS by 81%
 4. Added accessibility features (WCAG 2.1)
 5. Documented JavaScript with JSDoc
 
-**Second Pass:**
+**Changes Made (Phase 2):**
 1. Removed contact form entirely (was failing on Cloudflare)
 2. Converted to single-page layout (no scrolling)
 3. Added mailto email link next to LinkedIn
@@ -207,26 +240,21 @@ The site meets WCAG 2.1 AA standards:
 5. Removed header/logo for cleaner look
 6. Updated to modern favicon set
 7. Deleted mail.php (no backend needed)
-8. Reduced CSS further (517 → 367 lines)
-9. Reduced JS (156 → 24 lines)
+
+**Changes Made (Phase 3):**
+1. Added OpenGraph and Twitter Card meta tags
+2. Added og-image.png for social sharing
+3. Removed unused Font Awesome CSS
+4. Archived ~100 unused files to `.archive/`
+5. Created comprehensive README.md documentation
+6. Updated CLAUDE.md for handoff
 
 **Final State:**
 - Pure static site (HTML/CSS/JS only)
 - Single viewport, no scrolling
 - LinkedIn + Email contact options
-- ~500 total lines of custom code
-
----
-
-## Git History (Key Commits)
-
-```
-7b31126 chore: update favicons and add new logo
-28c8425 style: remove logo header for cleaner single-page look
-c90e572 refactor: convert to single-page layout with mailto link
-934c13b fix: address code review findings
-9ccbfff refactor: modernize portfolio with security fixes and 90% code reduction
-```
+- Full social sharing support
+- ~470 total lines of custom code
 
 ---
 
@@ -246,13 +274,16 @@ c90e572 refactor: convert to single-page layout with mailto link
 
 6. **Contact goes to Gmail** - The mailto link uses `kerstennn@gmail.com`.
 
+7. **Archive folder** - The `.archive/` folder contains ~100 unused template files. Can be deleted permanently or kept for reference.
+
 ---
 
 ## Related Documentation
 
 | Document | Purpose |
 |----------|---------|
-| `README.md` | Quick start for developers |
+| `README.md` | Comprehensive developer documentation |
+| `.archive/README.md` | Archive contents explanation |
 | `~/.claude/rules/checklists/static-sites.md` | Static site patterns |
 
 ---
