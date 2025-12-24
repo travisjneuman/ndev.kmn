@@ -38,17 +38,6 @@ $(document).ready(function() {
   });
 
   // ======================
-  // Mobile Menu Toggle
-  // ======================
-
-  $('.menu-bar').on('click', function(e) {
-    e.preventDefault();
-    $('nav').toggleClass('hide');
-    $('span', this).toggleClass('lnr-menu lnr-cross');
-    $('.main-menu').toggleClass('mobile-menu');
-  });
-
-  // ======================
   // Contact Form Handler
   // ======================
 
@@ -76,7 +65,7 @@ $(document).ready(function() {
     $alertMsg
       .removeClass('success error')
       .addClass(type)
-      .html(message)
+      .text(message) // Use .text() to prevent XSS
       .fadeIn();
   }
 
