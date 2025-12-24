@@ -158,6 +158,11 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+/* WebP background for browsers that support it */
+.webp .banner-area {
+  background-image: url(../img/banner-bg.webp);
+}
+
 .overlay {
   position: absolute;
   left: 0;
