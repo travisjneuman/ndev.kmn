@@ -290,15 +290,23 @@ The site meets WCAG 2.1 AA standards:
 
 ---
 
-## Related Documentation
+## Related Global Rules
 
-| Document | Purpose |
-|----------|---------|
-| `README.md` | Comprehensive developer documentation |
-| `.archive/README.md` | Archive contents explanation |
-| `~/.claude/rules/checklists/static-sites.md` | Static site patterns |
+Load these `~/.claude/` files when relevant:
+- `rules/checklists/static-sites.md` for HTML/CSS/JS patterns
+- `rules/checklists/ui-visual-changes.md` for UI changes
 
 ---
 
-*Last updated: December 2025*
-*Status: Complete - ready for handoff*
+## Quick Start
+
+| I want to... | Command |
+|--------------|---------|
+| Start any task | `/start-task [description]` |
+| Debug an issue | `Skill(debug-like-expert)` |
+| Review code | `Skill(generic-static-code-reviewer)` |
+
+---
+
+*Global workflow, skills, and standards loaded from `~/.claude/`*
+*Last Updated: December 28, 2025*
