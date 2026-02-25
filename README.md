@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="img/logo/logo.png" alt="KMN" width="120">
+  <a href="https://kersten.neuman.dev"><img src="img/logo/logo.png" alt="KMN" width="120"></a>
 </p>
 
 <h1 align="center">Kersten M. Neuman</h1>
