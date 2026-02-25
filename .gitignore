@@ -1,9 +1,5 @@
 scss/.DS_Store
 .DS_Store
 
-# Large archived files (12MB+ not suitable for git)
-.archive/banner-bg.png
-
 # Internal development documentation
 CLAUDE.md
-.archive/

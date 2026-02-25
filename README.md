@@ -1,143 +1,101 @@
-# Kersten M. Neuman Portfolio
+<p align="center">
+  <img src="img/logo/logo.png" alt="KMN" width="120">
+</p>
 
-Single-page portfolio website for Kersten M. Neuman, a Customer Service Professional based in Grand Rapids, Michigan.
+<h1 align="center">Kersten M. Neuman</h1>
 
-**Live:** https://kersten.neuman.dev
+<p align="center">
+  <strong>Customer Service Professional — Grand Rapids, MI</strong>
+</p>
+
+<p align="center">
+  <a href="https://kersten.neuman.dev"><img src="https://img.shields.io/badge/Live_Site-kersten.neuman.dev-8560f6?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Site"></a>
+  <a href="https://pages.cloudflare.com"><img src="https://img.shields.io/badge/Cloudflare_Pages-Deployed-f38020?style=for-the-badge&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/Dependencies-0-brightgreen?style=flat-square" alt="Zero Dependencies">
+  <img src="https://img.shields.io/badge/Build_Step-None-brightgreen?style=flat-square" alt="No Build Step">
+  <img src="https://img.shields.io/badge/Fonts-Self_Hosted-8560f6?style=flat-square" alt="Self-Hosted Fonts">
+  <img src="https://img.shields.io/badge/Third_Party_Requests-0-brightgreen?style=flat-square" alt="Zero Third-Party Requests">
+</p>
 
 ---
+
+Single-page portfolio that loads fast, respects privacy, and just works. No frameworks, no CDNs, no tracking, no build tools. One HTML file, one CSS file, three font files, and a gorgeous full-viewport hero.
+
+## The Stack (All of It)
+
+```
+index.html    ← the whole site
+css/main.css  ← every style
+fonts/        ← Poppins (3 weights, woff2, latin subset)
+img/          ← WebP hero + JPG fallback + favicons + OG image
+```
+
+That's it. Seriously. `python -m http.server 8000` and you're running.
+
+## Color Palette
+
+<p>
+  <img src="https://img.shields.io/badge/%E2%96%88%E2%96%88%E2%96%88%E2%96%88-8560f6?style=for-the-badge&labelColor=8560f6" alt="#8560f6">
+  <img src="https://img.shields.io/badge/%E2%96%88%E2%96%88%E2%96%88%E2%96%88-777777?style=for-the-badge&labelColor=777777" alt="#777777">
+  <img src="https://img.shields.io/badge/%E2%96%88%E2%96%88%E2%96%88%E2%96%88-222222?style=for-the-badge&labelColor=222222" alt="#222222">
+  <img src="https://img.shields.io/badge/%E2%96%88%E2%96%88%E2%96%88%E2%96%88-ffffff?style=for-the-badge&labelColor=ffffff" alt="#ffffff">
+</p>
+
+| Token | Hex | Role |
+|-------|-----|------|
+| `--color-primary` | `#8560f6` | Overlay, accents, buttons, theme |
+| `--color-text` | `#777777` | Body copy |
+| `--color-heading` | `#222222` | Headlines (print) |
+| `--color-white` | `#ffffff` | Text on overlay |
+
+## What You Get
+
+- **Zero dependencies** — no npm install, no node_modules, no package.json
+- **Self-hosted Poppins** — no Google Fonts API calls, no GDPR headaches (~23KB total)
+- **WebP + JPG hero** — 637KB primary, 946KB fallback, JS detection for progressive enhancement
+- **Full SEO suite** — JSON-LD Person schema, OpenGraph, Twitter Cards, canonical URL, sitemap, robots.txt
+- **Accessible** — skip-to-content, semantic HTML, ARIA labels, focus-visible, `prefers-reduced-motion`
+- **Staggered animations** — GPU-accelerated fade-in on load, glow hover on buttons
+- **Print styles** — because someone will Ctrl+P this
 
 ## Quick Start
 
 ```bash
-# Start local server (Python)
+# Python
 python -m http.server 8000
 
-# Or with Node.js
+# Node
 npx serve .
 
-# Visit http://localhost:8000
+# Then visit http://localhost:8000
 ```
-
-No build step. No dependencies to install. Pure static files.
-
----
-
-## File Structure
-
-```
-ndev.kmn/
-├── index.html              # Single-page portfolio
-├── README.md               # This file
-├── robots.txt              # Search engine directives
-├── sitemap.xml             # Sitemap
-├── .gitignore
-├── css/
-│   └── main.css            # All styles + @font-face declarations
-├── fonts/
-│   ├── poppins-100-latin.woff2
-│   ├── poppins-300-latin.woff2
-│   └── poppins-500-latin.woff2
-└── img/
-    ├── banner-bg.webp      # Hero background (637KB, primary)
-    ├── banner-bg.jpg       # Hero background (946KB, fallback)
-    ├── favicon/            # Favicon files + site.webmanifest
-    ├── logo/               # Brand assets
-    └── social/             # OpenGraph image (1200x630)
-```
-
----
-
-## Design System
-
-### Colors
-
-| Name | Hex | Usage |
-|------|-----|-------|
-| Primary | `#8560f6` | Overlay, accents, theme color |
-| Text | `#777777` | Body text |
-| Heading | `#222222` | Headlines (print) |
-| White | `#ffffff` | Text on overlay |
-
-### Typography
-
-**Font:** Poppins (self-hosted, Latin subset)
-
-| Weight | Usage |
-|--------|-------|
-| 100 | Hero name (h1) |
-| 300 | Body text, tagline |
-| 500 | Buttons, headings |
-
-### Responsive Breakpoints
-
-| Breakpoint | Changes |
-|------------|---------|
-| `max-width: 767px` | Smaller h1 (36px), stacked buttons |
-| `max-width: 480px` | Smallest h1 (28px) |
-
----
-
-## Customization
-
-### Changing Colors
-
-Edit CSS variables in `css/main.css`:
-```css
-:root {
-  --color-primary: #your-color;
-  --color-primary-rgb: r, g, b;
-}
-```
-
-Also update `<meta name="theme-color">` in `index.html` and `theme_color`/`background_color` in `img/favicon/site.webmanifest`.
-
-### Changing the Background Image
-
-Replace both `img/banner-bg.webp` and `img/banner-bg.jpg`:
-
-```bash
-npx sharp-cli -i your-image.png -o img/banner-bg.webp -f webp --quality 80
-npx sharp-cli -i your-image.png -o img/banner-bg.jpg -f jpeg --quality 75
-```
-
-Both WebP and JPG versions are required for browser compatibility.
-
-### Changing Contact Info
-
-- **LinkedIn URL:** Edit the `href` on the LinkedIn `<a>` tag in `index.html`
-- **Email:** Edit the `mailto:` href on the Email `<a>` tag in `index.html`
-
----
 
 ## Deployment
 
-Hosted on Cloudflare Pages with auto-deploy from `origin/master`.
+Auto-deploys from `master` via Cloudflare Pages. Works on any static host — upload the files and go.
 
-Can also be deployed to Netlify, Vercel, GitHub Pages, or any static host. Upload `index.html`, `css/`, `fonts/`, `img/`, `robots.txt`, and `sitemap.xml`.
+## Customization
 
----
+**Brand color:** edit `--color-primary` and `--color-primary-rgb` in `css/main.css`, update `<meta name="theme-color">` in `index.html`, and `theme_color` in `img/favicon/site.webmanifest`.
 
-## Accessibility
+**Hero image:** replace both `img/banner-bg.webp` and `img/banner-bg.jpg`. Both formats needed for browser compat.
 
-- Skip-to-content link
-- Semantic HTML (`<main>`, `<section>`, `<footer>`)
-- ARIA labels on interactive elements
-- Focus-visible states
-- `prefers-reduced-motion` support
-- Print styles
-- WCAG 2.1 AA color contrast
+**Contact info:** edit the `href` attributes on the LinkedIn and Email buttons in `index.html`.
 
----
+## Typography
 
-## SEO
+**Poppins** — self-hosted, Latin subset only.
 
-- JSON-LD Person structured data
-- OpenGraph + Twitter Card meta tags
-- Canonical URL
-- robots.txt + sitemap.xml
-- Self-hosted fonts (no third-party requests)
-
----
+| Weight | Where |
+|--------|-------|
+| 100 (Thin) | Hero name |
+| 300 (Light) | Body text, tagline |
+| 500 (Medium) | Buttons, headings |
 
 ## License
 
