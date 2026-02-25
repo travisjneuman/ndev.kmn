@@ -1,25 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
-	<!-- WebP detection (runs early to enable WebP background before CSS loads) -->
-	<script>
-		var img = new Image();
-		img.onload = function() { document.documentElement.classList.add('webp'); };
-		img.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
-	</script>
-
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Author Meta -->
-	<meta name="author" content="Kersten M. Neuman">
-	<!-- Meta Description -->
-	<meta name="description" content="Kersten M. Neuman - Customer Service Professional based in Grand Rapids, Michigan. Dedicated to delivering exceptional customer experiences.">
-	<!-- Meta Keywords -->
-	<meta name="keywords" content="Kersten Neuman, customer service, Grand Rapids, Michigan, professional, customer experience">
-	<!-- meta character set -->
 	<meta charset="UTF-8">
-	<!-- Site Title -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- SEO -->
 	<title>Kersten M. Neuman | Customer Service Professional</title>
+	<meta name="author" content="Kersten Mary Neuman">
+	<meta name="description" content="Kersten Mary Neuman - Customer Service Professional based in Grand Rapids, Michigan. Dedicated to delivering exceptional customer experiences with a focus on empathy, problem-solving, and client satisfaction.">
+	<meta name="keywords" content="Kersten Neuman, Kersten Mary Neuman, customer service, Grand Rapids, Michigan, professional, customer experience">
+	<link rel="canonical" href="https://kersten.neuman.dev/">
 
 	<!-- Favicons -->
 	<link rel="icon" type="image/png" href="/img/favicon/favicon-96x96.png" sizes="96x96">
@@ -34,24 +24,50 @@
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://kersten.neuman.dev/">
 	<meta property="og:title" content="Kersten M. Neuman | Customer Service Professional">
-	<meta property="og:description" content="Customer Service Professional based in Grand Rapids, Michigan. Dedicated to delivering exceptional customer experiences.">
+	<meta property="og:description" content="Kersten Mary Neuman - Customer Service Professional based in Grand Rapids, Michigan. Dedicated to delivering exceptional customer experiences with a focus on empathy, problem-solving, and client satisfaction.">
 	<meta property="og:image" content="https://kersten.neuman.dev/img/social/og-image.png">
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:url" content="https://kersten.neuman.dev/">
 	<meta name="twitter:title" content="Kersten M. Neuman | Customer Service Professional">
-	<meta name="twitter:description" content="Customer Service Professional based in Grand Rapids, Michigan. Dedicated to delivering exceptional customer experiences.">
+	<meta name="twitter:description" content="Kersten Mary Neuman - Customer Service Professional based in Grand Rapids, Michigan. Dedicated to delivering exceptional customer experiences with a focus on empathy, problem-solving, and client satisfaction.">
 	<meta name="twitter:image" content="https://kersten.neuman.dev/img/social/og-image.png">
 
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500&display=swap" rel="stylesheet">
+	<!-- JSON-LD Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Kersten Mary Neuman",
+		"givenName": "Kersten",
+		"familyName": "Neuman",
+		"jobTitle": "Customer Service Professional",
+		"url": "https://kersten.neuman.dev",
+		"email": "kerstennn@gmail.com",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Grand Rapids",
+			"addressRegion": "MI",
+			"addressCountry": "US"
+		},
+		"sameAs": [
+			"https://www.linkedin.com/in/kersten-neuman-990348bb/"
+		]
+	}
+	</script>
+
+	<!-- WebP detection (runs early to enable WebP background before CSS loads) -->
+	<script>
+		var img = new Image();
+		img.onload = function() { document.documentElement.classList.add('webp'); };
+		img.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+	</script>
+
+	<!-- Font preload (primary weight) -->
+	<link rel="preload" href="fonts/poppins-300-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="css/linearicons.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -61,51 +77,51 @@
 	<!-- Single Page Layout -->
 	<main id="main-content" class="single-page">
 		<!-- Hero Section -->
-		<section class="banner-area relative" aria-label="Introduction">
+		<section class="banner-area" aria-label="Introduction">
 			<div class="overlay overlay-bg"></div>
 			<div class="container">
-				<div class="row fullscreen align-items-center justify-content-center">
-					<div class="col-lg-10">
-						<div class="banner-content text-center">
-							<h1 class="text-white">Kersten M. Neuman</h1>
-							<p class="text-white">Customer Service Professional<br>Based out of Grand Rapids, Michigan.</p>
-							<div class="banner-buttons">
-								<a href="https://www.linkedin.com/in/kersten-neuman-990348bb/"
-								   class="primary-btn d-inline-flex align-items-center"
-								   aria-label="View Kersten's LinkedIn Profile">
-									<span class="mr-10">LinkedIn</span>
-									<span class="lnr lnr-arrow-right" aria-hidden="true"></span>
-								</a>
-								<a href="mailto:kerstennn@gmail.com"
-								   class="primary-btn d-inline-flex align-items-center"
-								   aria-label="Send email to Kersten">
-									<span class="mr-10">Email</span>
-									<span class="lnr lnr-arrow-right" aria-hidden="true"></span>
-								</a>
-							</div>
-						</div>
+				<div class="banner-content text-center">
+					<h1 class="text-white animate-in">
+						Kersten M. Neuman
+						<span class="sr-only">Kersten Mary Neuman</span>
+					</h1>
+					<p class="text-white animate-in animate-delay-1">Customer Service Professional<br>Based out of Grand Rapids, Michigan.</p>
+					<div class="banner-buttons animate-in animate-delay-2">
+						<a href="https://www.linkedin.com/in/kersten-neuman-990348bb/"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="primary-btn"
+						   aria-label="View Kersten's LinkedIn Profile (opens in new tab)">
+							<span>LinkedIn</span>
+							<svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+								<rect x="2" y="9" width="4" height="12"/>
+								<circle cx="4" cy="4" r="2"/>
+							</svg>
+						</a>
+						<a href="mailto:kerstennn@gmail.com"
+						   class="primary-btn"
+						   aria-label="Send email to Kersten">
+							<span>Email</span>
+							<svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<rect x="2" y="4" width="20" height="16" rx="2"/>
+								<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+							</svg>
+						</a>
 					</div>
 				</div>
 			</div>
 
 			<!-- Footer integrated into hero -->
-			<footer class="footer-area">
+			<footer class="footer-area animate-in animate-delay-3">
 				<div class="container">
-					<div class="footer-bottom d-flex justify-content-center align-items-center">
-						<p class="footer-text m-0">
-							&copy; <span id="current-year">2024</span> Kersten M. Neuman. All rights reserved.
-						</p>
-					</div>
+					<p class="footer-text">
+						&copy; <span id="current-year">2026</span> Kersten M. Neuman. All rights reserved.
+					</p>
 				</div>
 			</footer>
 		</section>
 	</main>
-
-	<!-- JavaScript -->
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
 
 	<!-- Update copyright year dynamically -->
 	<script>

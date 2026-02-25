@@ -1,10 +1,42 @@
 /**
  * Main Stylesheet for Kersten M. Neuman Portfolio
  *
- * Single-page portfolio layout
+ * Zero-dependency single-page portfolio layout
  * - Full viewport hero with integrated footer
+ * - Self-hosted Poppins font
  * - No scrolling required
  */
+
+/* =================================== */
+/*  Self-Hosted Fonts
+/* =================================== */
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(../fonts/poppins-100-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../fonts/poppins-300-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/poppins-500-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 /* =================================== */
 /*  CSS Custom Properties
@@ -12,14 +44,12 @@
 
 :root {
   --color-primary: #8560f6;
-  --color-primary-dark: #6a4dd0;
   --color-primary-rgb: 133, 96, 246;
   --color-text: #777777;
   --color-heading: #222222;
   --color-white: #ffffff;
 
   --font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --transition: all 0.3s ease;
 }
 
 /* =================================== */
@@ -61,7 +91,7 @@ ol, ul {
 }
 
 a {
-  transition: var(--transition);
+  transition: color 0.3s ease;
   text-decoration: none;
   color: var(--color-text);
 }
@@ -100,9 +130,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-white { color: var(--color-white) !important; }
 .text-center { text-align: center; }
-.mr-10 { margin-right: 10px; }
-.m-0 { margin: 0; }
-.relative { position: relative; }
 
 /* =================================== */
 /*  Accessibility
@@ -140,12 +167,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =================================== */
+/*  Layout (replaces Bootstrap grid)
+/* =================================== */
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* =================================== */
 /*  Single Page Layout
 /* =================================== */
 
 .single-page {
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100); /* Mobile Safari fix */
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -188,6 +226,11 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 2;
 }
 
+.banner-content {
+  max-width: 800px;
+  width: 100%;
+}
+
 .banner-content h1 {
   font-size: 60px;
   font-weight: 100;
@@ -219,17 +262,18 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 20px;
   background: transparent;
   border: 1px solid var(--color-white);
-  color: var(--color-heading);
+  color: var(--color-white);
   display: inline-flex;
   align-items: center;
+  gap: 10px;
+  font-family: var(--font-family);
   font-weight: 500;
   position: relative;
-  transition: var(--transition);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
   text-transform: uppercase;
   font-size: 13px;
   letter-spacing: 0.5px;
-  transform: translateY(0);
 }
 
 .primary-btn:focus {
@@ -243,19 +287,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .primary-btn span {
   color: var(--color-white);
-  position: relative;
-  z-index: 2;
-  transition: var(--transition);
 }
 
-.primary-btn:hover {
+.btn-icon {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.primary-btn:hover,
+.primary-btn:focus-visible {
+  color: var(--color-white);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
   background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
-.primary-btn:hover .mr-10 {
-  margin-right: 20px;
+.primary-btn:hover .btn-icon {
+  transform: translateX(4px);
 }
 
 /* =================================== */
@@ -267,11 +316,66 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0;
   position: relative;
   z-index: 2;
+  text-align: center;
 }
 
 .footer-text {
   color: rgba(255, 255, 255, 0.7);
   font-size: 13px;
+  margin: 0;
+}
+
+/* =================================== */
+/*  Page Load Animations
+/* =================================== */
+
+.animate-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.6s ease-out forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================== */
+/*  Reduced Motion
+/* =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .primary-btn {
+    transition: none;
+  }
+
+  .btn-icon {
+    transition: none;
+  }
+
+  .primary-btn:hover {
+    transform: none;
+  }
+
+  .primary-btn:hover .btn-icon {
+    transform: none;
+  }
 }
 
 /* =================================== */
@@ -303,10 +407,6 @@ h1, h2, h3, h4, h5, h6 {
   .banner-content h1 {
     font-size: 28px;
   }
-
-  .logo img {
-    max-height: 45px;
-  }
 }
 
 /* =================================== */
@@ -333,9 +433,20 @@ h1, h2, h3, h4, h5, h6 {
 
   .primary-btn {
     border-color: var(--color-heading);
+    color: var(--color-heading);
   }
 
   .primary-btn span {
     color: var(--color-heading);
+  }
+
+  .btn-icon {
+    stroke: var(--color-heading);
+  }
+
+  .animate-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
