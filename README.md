@@ -20,6 +20,7 @@
   <img src="https://img.shields.io/badge/Build_Step-None-brightgreen?style=flat-square" alt="No Build Step">
   <img src="https://img.shields.io/badge/Fonts-Self_Hosted-8560f6?style=flat-square" alt="Self-Hosted Fonts">
   <img src="https://img.shields.io/badge/Third_Party_Requests-0-brightgreen?style=flat-square" alt="Zero Third-Party Requests">
+  <a href="https://github.com/travisjneuman/ndev.kmn/generate"><img src="https://img.shields.io/badge/Use_This_Template-2ea44f?style=flat-square&logo=github&logoColor=white" alt="Use This Template"></a>
 </p>
 
 ---
@@ -62,6 +63,12 @@ That's it. Seriously. `python -m http.server 8000` and you're running.
 - **Accessible** — skip-to-content, semantic HTML, ARIA labels, focus-visible, `prefers-reduced-motion`
 - **Staggered animations** — GPU-accelerated fade-in on load, glow hover on buttons
 - **Print styles** — because someone will Ctrl+P this
+
+## Use as a Template
+
+This repo is a **GitHub template** — click the green **"Use this template"** button to create your own zero-dependency portfolio in seconds. Then customize the content, swap the hero image, update the color palette, and deploy to any static host.
+
+See the [Customization](#customization) section below for what to change.
 
 ## Quick Start
 
