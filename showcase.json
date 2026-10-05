@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/travisjneuman/travisjneuman/main/showcase/schema/showcase-v1.json",
+  "id": "kersten-portfolio",
+  "name": "KMN Portfolio",
+  "status": "live",
+  "statusNote": null,
+  "summary": "Zero-dependency portfolio site and GitHub template: one HTML file, one CSS file, self-hosted fonts.",
+  "visibility": "public",
+  "links": {
+    "live": "https://kersten.neuman.dev",
+    "repo": "https://github.com/travisjneuman/ndev.kmn"
+  },
+  "stack": [
+    "HTML5",
+    "CSS3",
+    "Zero Dependencies",
+    "Accessibility"
+  ],
+  "metrics": [
+    {
+      "value": "0",
+      "label": "Dependencies",
+      "source": "test ! -e package.json",
+      "round": "exact",
+      "asOf": "2026-10-05"
+    },
+    {
+      "value": "0",
+      "label": "Third-party requests",
+      "source": "grep -oE '(src|href)=\"https?://' index.html css/*.css (only canonical and profile links)",
+      "round": "exact",
+      "asOf": "2026-10-05"
+    },
+    {
+      "value": "None",
+      "label": "Build step",
+      "source": "manual: static files served as-is",
+      "round": "exact",
+      "asOf": "2026-10-05"
+    }
+  ],
+  "updated": "2026-10-05"
+}
