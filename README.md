@@ -5,7 +5,7 @@
 <h1 align="center">Kersten M. Neuman</h1>
 
 <p align="center">
-  <strong>Customer Service Professional — Grand Rapids, MI</strong>
+  <strong>Customer Service Professional in Grand Rapids, MI</strong>
 </p>
 
 <p align="center">
@@ -56,17 +56,17 @@ That's it. Seriously. `python -m http.server 8000` and you're running.
 
 ## What You Get
 
-- **Zero dependencies** — no npm install, no node_modules, no package.json
-- **Self-hosted Poppins** — no Google Fonts API calls, no GDPR headaches (~23KB total)
-- **WebP + JPG hero** — 637KB primary, 946KB fallback, JS detection for progressive enhancement
-- **Full SEO suite** — JSON-LD Person schema, OpenGraph, Twitter Cards, canonical URL, sitemap, robots.txt
-- **Accessible** — skip-to-content, semantic HTML, ARIA labels, focus-visible, `prefers-reduced-motion`
-- **Staggered animations** — GPU-accelerated fade-in on load, glow hover on buttons
-- **Print styles** — because someone will Ctrl+P this
+- **Zero dependencies**: no npm install, no node_modules, no package.json
+- **Self-hosted Poppins**: no Google Fonts API calls, no GDPR headaches (~23KB total)
+- **WebP + JPG hero**: 637KB primary, 946KB fallback, JS detection for progressive enhancement
+- **Full SEO suite**: JSON-LD Person schema, OpenGraph, Twitter Cards, canonical URL, sitemap, robots.txt
+- **Accessible**: skip-to-content, semantic HTML, ARIA labels, focus-visible, `prefers-reduced-motion`
+- **Staggered animations**: GPU-accelerated fade-in on load, glow hover on buttons
+- **Print styles**, because someone will Ctrl+P this
 
 ## Use as a Template
 
-This repo is a **GitHub template** — click the green **"Use this template"** button to create your own zero-dependency portfolio in seconds. Then customize the content, swap the hero image, update the color palette, and deploy to any static host.
+This repo is a **GitHub template**. Click the green **"Use this template"** button to create your own zero-dependency portfolio. Then customize the content, swap the hero image, update the color palette, and deploy to any static host.
 
 See the [Customization](#customization) section below for what to change.
 
@@ -84,7 +84,7 @@ npx serve .
 
 ## Deployment
 
-Auto-deploys from `master` via Cloudflare Pages. Works on any static host — upload the files and go.
+Auto-deploys from `master` via Cloudflare Pages. Works on any static host: upload the files and go.
 
 ## Customization
 
@@ -96,7 +96,7 @@ Auto-deploys from `master` via Cloudflare Pages. Works on any static host — up
 
 ## Typography
 
-**Poppins** — self-hosted, Latin subset only.
+**Poppins**, self-hosted, Latin subset only.
 
 | Weight | Where |
 |--------|-------|
