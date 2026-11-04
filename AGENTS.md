@@ -29,7 +29,7 @@ Zero-dependency static HTML/CSS/JavaScript portfolio site for Kersten Neuman, de
 
 ## Public Copy Style (owner rule, 2026-10-05)
 
-Canonical copy: `tjn.portfolio/AGENTS.md`. Everything a visitor can read (site copy, README, docs pages, meta tags, titles, alt text, UI strings) must sound like Travis wrote it.
+This section is the self-contained copy-style contract for this repository. Everything a visitor can read (site copy, README, docs pages, meta tags, titles, alt text, UI strings) must sound like Travis wrote it.
 
 - **No em dashes (—)** anywhere public, and no spaced en dashes used as em dashes. Use a colon, a comma, parentheses, or a new sentence. Titles use ` | ` (for example `About | Site Name`).
 - First person where a person is speaking, plain words, short sentences. Say what it does and what happened.
